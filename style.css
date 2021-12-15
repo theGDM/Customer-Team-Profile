@@ -1,0 +1,693 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&family=Monoton&display=swap');
+
+/* Common Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    /* It will grt rid of the defaults bullets from the elements */
+    outline: none;
+    font-family: "Bellota Text",cursive;
+    font-weight: 400;
+}
+
+html{
+    font-size: 62.5%;
+    /* Now 1 rem equals 10px */
+    scroll-behavior: smooth;
+    /* This will make smooth behaviour, to reach different section */
+}
+
+.container{
+    width:100%;
+    overflow-x: hidden;
+}
+
+.section-heading{
+    font-size: 10rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: #999;
+    opacity: 0.1;
+    text-shadow: 2rem 2rem 4rem #aaa;
+}
+/* End of Common Styles */
+
+/* Section-1 */
+.section-1{
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    /* Now in order to position the element according to its parent element, i'm going 
+    to set positon relative for the section element */
+    position: relative;
+}
+
+.floating-bg{
+    width: 150vw;
+    height: 150vw;
+    background-color: rgba(50,231,255,0.8);
+    /* In order to place it center i am going to position it absolutely and its parent
+    element relatively, so that it can we offset from top and left relative to its 
+    parent element. */
+    position: absolute;
+    top:-125vw;
+    /* 15% of the parent height i.e 753.6*0.15 */
+    /* Now in order to center it horizontaly i will use calc function */
+    left:calc(50% - 75vw);
+    border-radius: 45%;
+    animation:rotate 30s infinite;
+}
+
+.floating-bg::before{
+    content: "";
+    width:100%;
+    height:100%; 
+    /* i.e 100% of 70 rem ,700px each */
+    background-color: rgba(50,231,255,0.1);
+    position:absolute;
+    top: 0;
+    left: 0;
+    /* Rn the element is not visible as it is placed behind the first background. */
+    /* It is offsets relative to the .floating-bg, even though it have postion:absolute */
+    border-radius: 40%;
+    animation:rotate 30s infinite;
+}
+
+/* So now in order to animate both the elements, we are going to use css keyframes, it
+allow us to to create some css rules and then apply them to the elements using animation
+property. */
+@keyframes rotate {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+/* Now i am going to define two different points starting and ending point, i mean 0% and 100% .
+So at the 0% i mean at the starting point, we need to transform with the rotate function. So 
+during the animation, the element will rotate once by 360 degrees. So to apply this styles to
+the background we need to use animation property for both elements.*/
+
+.navbar{
+    position: relative;
+    z-index:20;
+    /* I made position relative otherwise there will be no effect of z-index */
+    top:4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.navbar-link{
+    font-size:2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.2rem;
+    color: #fff;
+    width:1.5rem;
+    /* In order to place them vertically i am going to decrease the width of the navbar link, and besides
+    that i am going to use property  word-wrap with value break-word */
+    word-wrap:break-word;
+    text-align: center;
+    /* This align center will align the link test in center of width whether it is 1.5rem -> 15rem */
+    transition: all 0.5s;
+}
+
+.navbar-link:hover{
+    width:15rem;
+    background-color:rgba(255, 255, 255, 0.2);
+    transition: all 2.5s;
+    /* Now we should also provide transition property on the .navbar-link because when we 
+    remove cursor, the link will be in its original state suddenly */
+    /* And if i only provide transition in .navbar-link then the same property will be 
+    inherited when be apply :hover pseudo class to .navbar-link*/
+}
+
+.section-1-heading{
+    font-size:8rem;
+    font-family: 'Monoton',cursive;
+    position: absolute;
+    top:19vw;
+    left:50%;
+    /* RN the heading is placed at the start of 50% of the parent element i.e. section, but
+    it is not centered we need to moov it to left side by 50% of its width; */
+    transform: translateX(-50%);
+    color: #fff;
+    text-shadow: 0.3rem 0.3rem 0.3rem #888;
+    background-color: #fff;
+    width: 85rem;
+    text-align: center;
+    padding: 0.8rem 1.6rem;
+    border-radius: 0.8rem;
+    opacity: 0.9;
+}
+
+.logo{
+    position: absolute;
+    top:70%;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.logo i{
+    font-size:15rem;
+    color: rgba(50,231,255,0.8);
+    text-shadow: 0.1rem 0.1rem 0.2rem #ddd, -0.1rem -0.1rem 0.2rem #ddd;
+}
+/* End of Section-1 */
+
+/* Section-2 */
+.section-2{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.customers-wrapper{
+   display:flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   align-items: center;
+   height: 70%;
+
+}
+
+.customer{
+    width: 35rem;
+    height: 50rem;
+    background-color: #eee;
+    border-radius: 0.5rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    /* Just to create some space inside the box */
+    padding: 2rem;
+    box-shadow: 1rem 1rem 2rem #ddd, -1rem -1rem 2rem #eee;
+    transition: box-shadow 0.5s;
+}
+
+.customer:hover{
+    box-shadow: 2rem 2rem 4rem #ddd, -2rem -2rem 4rem #eee; 
+}
+
+.customer:first-child{
+    align-self: flex-start;
+    /* Nothing will be changed because we need to increase the height of wrapper */
+}
+
+.customer:nth-last-of-type(2){
+    align-self: center;
+}
+
+.customer:last-child{
+    align-self: flex-end;
+}
+
+.fa-quote-left{
+    font-size: 5rem;
+    color: #f08e0f;
+}
+
+.customer-text{
+    font-size: 1.8rem;
+    margin: 2.5rem 0;
+    text-align: justify;
+}
+
+.customer-text::first-letter{
+    margin-left: 1rem;
+}
+
+.customer-rating i{
+    font-size: 2rem;
+    color: #f08e0f;
+}
+
+/* Before we proceed to style section let, make image size smaller, so that we can work comfortably */
+.customer-img{
+    height: 10rem;
+    width: 10rem;
+    margin: 2rem 0;
+    border-radius: 50%;
+    object-fit: cover;
+    /* in order to maintain the quality of image */
+}
+
+.customer-name{
+    font-size: 2rem;
+    font-weight: 700;
+}
+/* End of Section-2 */
+
+/* Section-3 */
+.section-3{
+    width:100%;
+    height:100vh;
+    background-color: #fff;
+    /* Finally create some space at top and bottom */
+    padding: 5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.team-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height:70%;
+}
+
+.team-member{
+    width:35rem;
+    padding:1rem 1rem 2rem 1rem;
+    background-color: #fffeee;
+    box-shadow: 1rem 1rem 2rem #ddd, -1rem -1rem 2rem #eee;
+    position: relative;
+    opacity: 0.7;
+    transition: all 0.5s;
+}
+
+.team-member:first-child{
+    align-self: flex-end;
+}
+
+.team-member:last-child{
+    align-self: flex-start;
+}
+
+.team-member:hover{
+    opacity: 1;
+}
+
+.team-member-img{
+    width:100%;
+    border-radius: 0.5rem;
+}
+
+.team-member-name{
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #796717;
+    margin-top: 2rem;
+}
+
+.team-member-name span{
+    font-size: 1.7rem;
+}
+
+.team-member-skills{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:1rem 0 2rem 0;
+}
+
+.team-member-skills li{
+    font-size:1.5rem;
+    color: #505050;
+}
+
+.projects-btn{
+    background-color: #fab34a;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+.story-btn{
+    width :4rem;
+    height: 4rem;
+    background-color: #222;
+    /* So now we need to fix its position, so lets set its position to absolute, then in order 
+    align it according to the parent element, we need to define position relative for the .team-wrapper . */
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    border-radius: 5rem;
+    display:flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: transform 0.5s;
+}
+
+.change.story-btn{
+    transform: rotate(405deg);
+}
+
+.story-btn-line{
+    width: 100%;
+    height: 0.15rem;
+    background-color: #fff;
+    /* Now the line is not visible because it is placed at the top of the button (not over it), so we need to fix 
+    its position */
+}
+
+.story{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(253, 69, 69, 0.9);
+    color: white;
+    position: absolute;
+    top:0;
+    left:0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:2rem;
+    /* So in order to hide the story we will use transform property with the scale function set to 0 */
+    transform: scale(0);
+    transform-origin: top right;
+    border-radius: 50rem 0 50rem 50rem;
+    transition: all 0.5s;
+}
+
+.change.story{
+    transform: scale(1);
+    border-radius: 0;
+}
+
+.story-heading{
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.story-paragraph{
+    font-size: 1.8rem;
+    color:#eee;
+    text-align: justify;
+    letter-spacing: 0.1rem;
+    text-indent: 2rem;
+}
+/* End of Section-3 */
+
+/* Section-4 */
+.section-4{
+    width: 100%;
+    height: 130vh;
+    background-color: #fff;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* So in order to give 3d environment, we need to use one of the properties called
+perspective, we have to assign it to parent element which is form-container. In
+general, a perspective property defines how far the element is away from the user. */
+.form-container{
+    width: 80%;
+    height: 40%;
+    background-color: #e5e9ff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0.3rem 0.3rem 0.4rem #ccc, -0.1rem -0.1rem 0.4rem #ccc;
+    border-radius: 0.5rem;
+    perspective: 100rem;
+}
+
+.form-img{
+    width: 55rem;
+    background-color: rgba(50, 231, 255, 0.8);
+    padding: 5rem;
+    opacity: 0.8;
+    box-shadow: -3rem 3rem 4rem #aaa;
+    border-radius: 0.5rem;
+    transform: rotateY(20deg);
+    transition: all 0.5s;
+}
+
+.form-img:hover{
+    transform: translateY(-2rem) rotateY(20deg);
+    box-shadow: -5rem 5rem 7rem #aaa;
+}
+
+.contact-form{
+    width: 45rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem;
+    border-radius: 0.5rem;
+    box-shadow: 3rem 3rem 4rem #aaa;
+    transform: rotateY(-20deg);
+    transition: all 0.5s;
+}
+
+.contact-form:hover{
+    transform: translateY(-2rem) rotateY(-20deg);
+    box-shadow: 5rem 5rem 7rem #aaa;
+}
+
+/* Since input element and textarea have some of the common styles so i grouped them together. */
+.contact-form input, .contact-form textarea{
+    margin:1rem;
+    padding: 1rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.1rem;
+    border: none;
+    border-radius: 2rem;
+    box-shadow: inset 0.1rem 0.1rem 0.3rem #ddd, inset -0.1rem -0.1rem 0.3rem #ddd;
+}
+
+.contact-form textarea{
+    max-height: 15rem;
+    min-height: 10rem;
+    max-width: 100%;
+    min-width: 70%;
+}
+
+.contact-form input[type="submit"]{
+    background-color: rgba(50, 231, 255, 0.8);
+    letter-spacing: 0.5rem;
+    color: #fff;
+    font-weight: bolder;
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: background-color 0.5s;
+}
+
+.contact-form input[type="submit"]:hover{
+    background-color: #32e7ff
+}
+
+.copyright{
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+    color: #444;
+    margin-top: 5rem;
+}
+
+.scroll-up-btn{
+    width: 5rem;
+    height: 5rem;
+    background-color: rgba(50, 231, 255, 0.8);
+    color: #fff;
+    position:fixed;
+    bottom: 5rem;
+    right: 5rem;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s;
+}
+
+.scroll-up-btn:hover{
+    background-color: #32e7ff;
+}
+/* End of Section-4 */
+
+/* Responsive */
+@media (max-width: 1400px){
+    .floating-bg{
+        top:-120vw;
+    }
+
+    .section-1-heading{
+        font-size: 6rem;
+        top: 25vw;
+        width: 70rem;
+    }
+
+    .navbar-link{
+        font-size: 2rem;
+    }
+
+    .logo{
+        top: 75%;
+    }
+
+    .logo i{
+        font-size: 10rem;
+    }
+
+    .section-heading{
+        font-size: 8rem;
+        margin-bottom: 10rem;
+    }
+    /* in this case the section will take up the required height when we set it to auto*/
+    .section-2{
+        height: auto;
+    }
+
+    .customers-wrapper{
+        flex-wrap: wrap;
+    }
+
+    .customer{
+        margin: 5rem 10rem;
+    }
+
+    .section-3{
+        height: auto;
+    }
+
+    .team-wrapper{
+        flex-wrap: wrap;
+    }
+
+    .team-member{
+        margin: 5rem 10rem;
+    }
+
+    .form-container{
+        height: 60%;
+    }
+
+    .form-img{
+        display: none;
+    }
+
+    .contact-form{
+        transform: rotateY(0);
+    }
+
+    .contact-form:hover{
+        transform: translateY(-1rem);
+    }
+
+    .copyright{
+        margin: 5rem 0 4rem 0;
+    }
+}
+
+@media (max-width:1150px){
+    .floating-bg{
+        top:-110vw;
+    }
+
+    .section-1-heading{
+        font-size: 5rem;
+        top: 30vw;
+        width: 60rem;
+    }
+
+    .logo i{
+        font-size: 9rem;
+    }
+}
+
+@media (max-width: 950px) {
+    .floating-bg{
+        top:-100vw;
+    }
+
+    .section-1-heading{
+        top:40vw;
+    }
+
+    .navbar{
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 750px) {
+    html{
+        font-size: 50%;
+    }
+
+    .floating-bg{
+        top: -90vw;
+    }
+
+    .section-1-heading{
+        top:48vw;
+    }
+
+    .section-heading{
+        margin-bottom: 5rem;
+    }
+}
+
+@media (max-width: 550px) {
+    html{
+        font-size: 45%;
+    }
+
+    .floating-bg{
+        top: -70vw;
+    }
+
+    .section-1-heading{
+        top: 65vw;
+        width: 42rem;
+        font-size: 3.5rem;
+    }
+
+    .section-heading{
+        font-size: 6rem;
+    }
+
+    .customer{
+        margin: 5rem 0;
+    }
+
+    .section-4{
+        height: auto;
+    }
+
+    .form-container{
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .contact-form{
+        box-shadow: 1rem 1rem 2rem #aaa;
+    }
+
+    .contact-form:hover{
+        box-shadow: 2rem 2rem 3rem #aaa;
+    }
+
+    .copyright{
+        font-size: 1.8rem;
+        margin: 5rem;
+        text-align: center;
+    }
+
+    .scroll-up-btn{
+        bottom: 2rem;
+        right: 2rem;
+    }
+}
+/* End of Responsive */
